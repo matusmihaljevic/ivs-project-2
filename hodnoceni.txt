@@ -1,0 +1,4 @@
+xbojnaa00 100 (vytvorenie Makefile, inštalátor a odinštalátor, profiling)
+xpodmaj00 100 (testy pre matematickú knižnicu, tvorba README, tvorba užívateľskej príručky)
+xpribik00 100 (tvorba GUI, prepojenie matematickej knižnice s GUI, mockup)
+xmihalm00 100 (založenie repozitára, tvorba a generovanie dokumentácie, sledovanie stavu projektu, matematická knižnica)

@@ -1,0 +1,52 @@
+Cieľová platforma:
+    - Ubuntu 64bit
+
+Pridelenie úloh:
+    - Jaroslav Podmajerský <xpodmaj00>
+        - testy pre matematickú knižnicu
+        - tvorba README
+        - tvorba užívateľskej príručky
+
+    - Matúš Mihaljevič <xmihalm00>
+        - založenie repozitára
+        - tvorba a generovanie dokumentácie
+        - sledovanie stavu projektu
+        - matematická knižnica
+
+    - Kristián Pribila <xpribik00>
+        - tvorba GUI
+        - prepojenie matematickej knižnice s GUI
+        - mockup
+
+    - Adam Bojnanský <xbojnaa00> 
+        - vytvorenie Makefile
+        - inštalátor a odinštalátor
+        - profiling
+    
+Termíny:
+    - 10.03.2024 - Založenie repozitára 
+    - 14.03.2024 - Matematická knižnica - deklarácia(kostra)
+    - 18.03.2024 - Testy pre matematickú knižnicu 
+    - 20.03.2024 - Makefile
+    - 25.03.2024 - Matematická knižnica - implementácia funkcií
+    - 01.04.2024 - GUI
+	- 05.04.2024 - Mockup
+    - 12.04.2024 - Dokumentácia, README, Užívateľská príručka
+	- 15.04.2024 - Profiling
+	- 25.04.2024 - Odevzdanie projektu
+
+Komunikácia:
+    - Discord
+    - E-mail
+    - Telefón
+
+Pravidlá komunikácie:
+    - Jednotlivé tasky na Discorde sa riešia vo vláknach
+    - Informácie o stretnutiach sú zasielané mailom
+    - Povinnosť účastniť sa stretnutiach tímu
+    - Urgentná komunikácia cez telefón
+
+Správa verzií:
+    - GIT (Github)
+        - url: https://github.com/matusmihaljevic/ivs-project-2.git
+        - pozvánka bola odoslaná na ivskontrola
