@@ -31,9 +31,7 @@ def div(dividend, divisor):
     @brief Podiel dvoch čísiel
     @return Podiel a / b
     @raise ZeroDivisionError Ak je deliteľ rovný 0
-    """    
-    return 42
-
+    """
 
 def mod(dividend, divisor):
     """
@@ -50,7 +48,7 @@ def fact(self):
     @return Faktoriál self!
     @raise ValueError Ak číslo nie je integer alebo je záporné
     """    
-    return 6
+    return 42
 
 
 def pow(base, exponent):
@@ -89,11 +87,11 @@ def ln(self):
 
 def log(base, argument):
     """
-    @brief Odmocnina čísla
+    @brief Logaritmus čísla argument o základe base
     @return log(base, x)
     @param base Základ
     @param argument Argument
     @raise ValueError ak je argument záporné číslo
     @raise ValueError ak je základ záporné číslo
-    """    
+    """
     return 3
