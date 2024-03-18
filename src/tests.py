@@ -32,7 +32,7 @@ def test_DIV():
     result = calc.div(dividend=4,divisor=2)
     assert result == 2
     result = calc.div(dividend=5,divisor=-3)
-    assert result == -(5/3)
+    assert result == round(-(5/3), 7)
     result = calc.div(dividend=0,divisor=2)
     assert result == 0
     
@@ -79,29 +79,31 @@ def test_POW():
     with pytest.raises(ValueError):       
         calc.pow(2, 1.5)
         
-def test_SQRT():
-    result = calc.sqrt(base=8,index=3)
+def test_root():
+    result = calc.root(base=8,index=3)
     assert result == 2
-    result = calc.sqrt(base=0.5,index=-2)
-    assert result == 4
-    result = calc.sqrt(base=0.5,index=2)
-    assert result == math.sqrt(2)/2
+    
+    with pytest.raises(ValueError):
+        calc.root(base=0.5,index=-2)
+
+    result = calc.root(base=0.5,index=2)
+    assert result == round(math.sqrt(2)/2, 7)
 
     with pytest.raises(ValueError):       
-        calc.sqrt(-3, 3)
+        calc.root(3, -3)
     with pytest.raises(ValueError):       
-        calc.sqrt(2, 1.5)
+        calc.root(2, 1.5)
     
 def test_LN():
     result = calc.ln(self=math.e)
     assert result == 1
     result = calc.ln(self=2)
-    assert result == math.log(2)
+    assert result == round(math.log(2), 7)
     
     with pytest.raises(ValueError):       
-        calc.log(-1)
+        calc.ln(-1)
     with pytest.raises(ValueError):       
-        calc.log(0)
+        calc.ln(0)
 
 def test_LOG():
     result = calc.log(base=2,argument=8)
