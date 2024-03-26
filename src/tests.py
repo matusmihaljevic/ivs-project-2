@@ -29,11 +29,11 @@ def test_MUL():
     assert result == 0
 
 def test_DIV():
-    result = calc.div(dividend=4,divisor=2)
+    result = calc.div(a=4,b=2)
     assert result == 2
-    result = calc.div(dividend=5,divisor=-3)
-    assert result == round(-(5/3), 7)
-    result = calc.div(dividend=0,divisor=2)
+    result = calc.div(a=5,b=-3)
+    assert result == -(5/3)
+    result = calc.div(a=0,b=2)
     assert result == 0
     
     with pytest.raises(ZeroDivisionError):
@@ -41,24 +41,24 @@ def test_DIV():
     
 #TEST ADVANCED MATH FUNCTIONS
 
-def test_MOD():
-    result = calc.mod(dividend=2,divisor=3)
+def test_INT_DIV():
+    result = calc.int_div(a=8,b=3)
     assert result == 2
-    result = calc.mod(dividend=-1,divisor=3)
+    result = calc.int_div(a=-6,b=3)
+    assert result == -2
+    result = calc.int_div(a=5.5,b=2)
     assert result == 2
-    result = calc.mod(dividend=5.5,divisor=2)
-    assert result == 1.5
-    result = calc.mod(dividend=42,divisor=21)
-    assert result == 0
+    result = calc.int_div(a=42,b=21)
+    assert result == 2
     
     with pytest.raises(ZeroDivisionError):       
-        calc.mod(2, 0)
+        calc.int_div(2, 0)
     
 def test_FACT():
     
-    result = calc.fact(self=0)
+    result = calc.fact(n=0)
     assert result == 1
-    result = calc.fact(self=4)
+    result = calc.fact(n=4)
     assert result == 24
     
     with pytest.raises(ValueError):
@@ -87,7 +87,7 @@ def test_root():
         calc.root(base=0.5,index=-2)
 
     result = calc.root(base=0.5,index=2)
-    assert result == round(math.sqrt(2)/2, 7)
+    assert result == pytest.approx((math.sqrt(2)/2))
 
     with pytest.raises(ValueError):       
         calc.root(3, -3)
@@ -95,10 +95,10 @@ def test_root():
         calc.root(2, 1.5)
     
 def test_LN():
-    result = calc.ln(self=math.e)
+    result = calc.ln(n=math.e)
     assert result == 1
-    result = calc.ln(self=2)
-    assert result == round(math.log(2), 7)
+    result = calc.ln(n=2)
+    assert result == pytest.approx(math.log(2))
     
     with pytest.raises(ValueError):       
         calc.ln(-1)

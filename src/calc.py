@@ -1,76 +1,76 @@
 ## @file calc.py
 ## @brief Matematická knižnica pre kalkulačku
-## @authors Matúš Mihaljevič, Adam Bojnanský, Kristián Pribila, Jaroslav Podmajerský
+## @author Matúš Mihaljevič
 
-def add(a, b):
+def add(a: float, b: float) -> float:
     """
     @brief Súčet dvoch čísiel
     @return Súčet a + b
     """
-    return round(a + b, 7)
+    return a + b
 
 
-def sub(a, b):
+def sub(a: float, b: float) -> float:
     """
     @brief Rozdiel dvoch čísiel
     @return Rozdiel a - b
     """    
-    return round(a - b, 7)
+    return a - b
 
 
-def mult(a, b):
+def mult(a: float, b: float) -> float:
     """
     @brief Súčin dvoch čísiel
     @return Súčin a * b
     """    
-    return round(a * b, 7)
+    return a * b
 
 
-def div(dividend, divisor):
+def div(a: float, b: float) -> float:
     """
     @brief Podiel dvoch čísiel
     @return Podiel a / b
     @raise ZeroDivisionError Ak je deliteľ rovný 0
     """
-    if(divisor == 0):
+    if(b == 0):
         raise ZeroDivisionError("Delenie nulou")
 
-    return round(dividend / divisor, 7)    
+    return a / b   
 
 
-def mod(dividend, divisor):
+def int_div(a : float, b: float) -> int:
     """
     @brief Celočíselný podiel dvoch čísiel
-    @return Modulo a % b
+    @return a // b
     @raise ZeroDivisionError Ak je deliteľ rovný 0
     """    
-    if(divisor == 0):
+    if(b == 0):
         raise ZeroDivisionError("Delenie nulou")
 
-    return dividend % divisor    
+    return int(a // b)    
 
 
-def fact(self):
+def fact(n: int) -> int:
     """
     @brief Faktoriál prirodzeného čísla
-    @return Faktoriál self!
+    @return Faktoriál n!
     @raise ValueError Ak číslo nie je integer alebo je záporné
     """    
-    if self < 0:
+    if not isinstance(n, int):
+        raise TypeError("Číslo musí byť prirodzené")
+    
+    if n < 0:
         raise ValueError("Číslo nesmie byť záporné")
 
-    if not isinstance(self, int):
-        raise TypeError("Číslo musí byť prirodzené")
-
     result = 1
-    while self != 0:
-        result *= self
-        self -= 1
+    while n != 0:
+        result *= n
+        n -= 1
 
     return result    
 
 
-def pow(base, exponent):
+def pow(base : float, exponent: int) -> float:
     """
     @brief Mocnica čísla s prirodzeným exponentom
     @return x^n
@@ -85,10 +85,10 @@ def pow(base, exponent):
     if not isinstance(exponent, int):
         raise ValueError("Exponent musí byť celé číslo")
 
-    return round(base ** exponent, 7)
+    return base ** exponent
 
 
-def root(base, index):
+def root(base: float, index: int) -> float:
     """
     @brief Odmocnina čísla s prirodzeným indexom
     @return x^{1/n}
@@ -105,7 +105,7 @@ def root(base, index):
         raise ValueError("Index musí byť prirodzené číslo")
 
     if (base < 0) and (index % 2 == 0):
-        raise ValueError("Číslo nie je možné odmocniť")
+        raise ValueError("Párna odmocnina nie je definovaná pre záporné čísla")
 
     guess = initialGuess
     while True:
@@ -115,27 +115,27 @@ def root(base, index):
         guess = nextGuess    
 
 
-def ln(self):
+def ln(n: float) -> float:
     """
     @brief Prirodzený logaritmus
-    @return ln(x)
+    @return ln(n)
     @raise ValueError ak je hodnota menšia alebo rovná 0
     """
-    if self <= 0:
+    if n <= 0:
         raise ValueError("ln(x) nie je definovaný pre x <= 0")
 
-    if self == 1:
+    if n == 1:
         return 0
     
-    n = 100000000
-    result = n * ((self ** (1/n)) - 1)
+    iterations = 100000000
+    result = iterations * ((n ** (1/iterations)) - 1)
     return round(result, 7)
 
 
-def log(base, argument):
+def log(base: float, argument: float) -> float:
     """
     @brief Logaritmus čísla argument o základe base
-    @return log(base, x)
+    @return log(argument)
     @param base Základ
     @param argument Argument
     @raise ValueError ak je argument záporné číslo
@@ -147,7 +147,7 @@ def log(base, argument):
     if base <= 1:
         raise ValueError("základ musí byť > 1")
        
-    n = 100000000
-    result = (n * ((argument ** (1/n)) - 1)) / (n * ((base ** (1/n)) - 1))
+    iterations = 100000000
+    result = (iterations * ((argument ** (1/iterations)) - 1)) / (iterations * ((base ** (1/iterations)) - 1))
 
     return round(result, 7)
