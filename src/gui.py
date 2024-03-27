@@ -11,7 +11,7 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"/mnt/c/Users/owner/VŠ/FIT/BIT/2.semester/IVS/Tkinter-Designer-master/build/assets/frame0")
+ASSETS_PATH = OUTPUT_PATH / Path(r"/mnt/c/Users/owner/VŠ/FIT/BIT/2.semester/IVS/build/assets/frame0")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -21,12 +21,12 @@ def relative_to_assets(path: str) -> Path:
 window = Tk()
 
 window.geometry("500x700")
-window.configure(bg = "#FFFFFF")
+window.configure(bg = "#808080")
 
 
 canvas = Canvas(
     window,
-    bg = "#FFFFFF",
+    bg = "#808080",
     height = 700,
     width = 500,
     bd = 0,
@@ -40,7 +40,7 @@ canvas.create_rectangle(
     0.0,
     500.0,
     69.0,
-    fill="#4B4C59",
+    fill="#808080",
     outline="")
 
 image_image_1 = PhotoImage(
@@ -83,36 +83,12 @@ button_2.place(
     height=29.0
 )
 
-button_image_3 = PhotoImage(
-    file=relative_to_assets("image_3.png"))
-button_3 = Button(
-    image=button_image_3,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("escape clicked"),
-    relief="flat"
-)
-button_3.place(
-    x=446.0,
-    y=19.0,
-    width=35.0,
-    height=29.0
-)
-
 image_image_2 = PhotoImage(
     file=relative_to_assets("image_2.png"))
 image_2 = canvas.create_image(
     109.0,
     35.0,
     image=image_image_2
-)
-
-image_image_3 = PhotoImage(
-    file=relative_to_assets("image_3.png"))
-image_3 = canvas.create_image(
-    464.0,
-    33.0,
-    image=image_image_3
 )
 
 canvas.create_rectangle(
@@ -122,6 +98,22 @@ canvas.create_rectangle(
     242.0,
     fill="#D9D9D9",
     outline="")
+
+button_image_3 = PhotoImage(
+    file=relative_to_assets("button_3.png"))
+button_3 = Button(
+    image=button_image_3,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: print("button_3 clicked"),
+    relief="flat"
+)
+button_3.place(
+    x=22.0,
+    y=603.0,
+    width=70.0,
+    height=41.0
+)
 
 button_image_4 = PhotoImage(
     file=relative_to_assets("button_4.png"))
@@ -133,10 +125,10 @@ button_4 = Button(
     relief="flat"
 )
 button_4.place(
-    x=408.0,
-    y=426.0,
+    x=21.0,
+    y=543.0,
     width=70.0,
-    height=40.0
+    height=41.0
 )
 
 button_image_5 = PhotoImage(
@@ -149,10 +141,10 @@ button_5 = Button(
     relief="flat"
 )
 button_5.place(
-    x=318.0,
-    y=426.0,
+    x=21.0,
+    y=484.0,
     width=70.0,
-    height=40.0
+    height=41.0
 )
 
 button_image_6 = PhotoImage(
@@ -165,10 +157,10 @@ button_6 = Button(
     relief="flat"
 )
 button_6.place(
-    x=213.0,
+    x=22.0,
     y=426.0,
     width=70.0,
-    height=40.0
+    height=41.0
 )
 
 button_image_7 = PhotoImage(
@@ -181,10 +173,10 @@ button_7 = Button(
     relief="flat"
 )
 button_7.place(
-    x=117.0,
-    y=426.0,
+    x=118.0,
+    y=603.0,
     width=70.0,
-    height=40.0
+    height=41.0
 )
 
 button_image_8 = PhotoImage(
@@ -197,10 +189,10 @@ button_8 = Button(
     relief="flat"
 )
 button_8.place(
-    x=22.0,
-    y=426.0,
+    x=117.0,
+    y=543.0,
     width=70.0,
-    height=40.0
+    height=41.0
 )
 
 button_image_9 = PhotoImage(
@@ -213,10 +205,10 @@ button_9 = Button(
     relief="flat"
 )
 button_9.place(
-    x=408.0,
-    y=426.0,
+    x=117.0,
+    y=484.0,
     width=70.0,
-    height=40.0
+    height=41.0
 )
 
 button_image_10 = PhotoImage(
@@ -229,10 +221,10 @@ button_10 = Button(
     relief="flat"
 )
 button_10.place(
-    x=408.0,
-    y=485.0,
+    x=118.0,
+    y=426.0,
     width=70.0,
-    height=40.0
+    height=41.0
 )
 
 button_image_11 = PhotoImage(
@@ -245,10 +237,10 @@ button_11 = Button(
     relief="flat"
 )
 button_11.place(
-    x=318.0,
-    y=426.0,
+    x=213.0,
+    y=603.0,
     width=70.0,
-    height=40.0
+    height=41.0
 )
 
 button_image_12 = PhotoImage(
@@ -261,10 +253,10 @@ button_12 = Button(
     relief="flat"
 )
 button_12.place(
-    x=318.0,
-    y=485.0,
+    x=212.0,
+    y=543.0,
     width=70.0,
-    height=40.0
+    height=41.0
 )
 
 button_image_13 = PhotoImage(
@@ -277,10 +269,10 @@ button_13 = Button(
     relief="flat"
 )
 button_13.place(
-    x=213.0,
-    y=426.0,
+    x=411.0,
+    y=603.0,
     width=70.0,
-    height=40.0
+    height=41.0
 )
 
 button_image_14 = PhotoImage(
@@ -293,10 +285,10 @@ button_14 = Button(
     relief="flat"
 )
 button_14.place(
-    x=213.0,
-    y=485.0,
+    x=212.0,
+    y=484.0,
     width=70.0,
-    height=40.0
+    height=41.0
 )
 
 button_image_15 = PhotoImage(
@@ -309,10 +301,10 @@ button_15 = Button(
     relief="flat"
 )
 button_15.place(
-    x=117.0,
+    x=213.0,
     y=426.0,
     width=70.0,
-    height=40.0
+    height=41.0
 )
 
 button_image_16 = PhotoImage(
@@ -325,10 +317,10 @@ button_16 = Button(
     relief="flat"
 )
 button_16.place(
-    x=117.0,
-    y=485.0,
+    x=325.0,
+    y=543.0,
     width=70.0,
-    height=40.0
+    height=41.0
 )
 
 button_image_17 = PhotoImage(
@@ -341,10 +333,10 @@ button_17 = Button(
     relief="flat"
 )
 button_17.place(
-    x=22.0,
-    y=426.0,
+    x=325.0,
+    y=484.0,
     width=70.0,
-    height=40.0
+    height=41.0
 )
 
 button_image_18 = PhotoImage(
@@ -357,10 +349,10 @@ button_18 = Button(
     relief="flat"
 )
 button_18.place(
-    x=22.0,
-    y=485.0,
+    x=411.0,
+    y=484.0,
     width=70.0,
-    height=40.0
+    height=41.0
 )
 
 button_image_19 = PhotoImage(
@@ -373,10 +365,10 @@ button_19 = Button(
     relief="flat"
 )
 button_19.place(
-    x=408.0,
-    y=485.0,
+    x=411.0,
+    y=543.0,
     width=70.0,
-    height=40.0
+    height=41.0
 )
 
 button_image_20 = PhotoImage(
@@ -389,10 +381,10 @@ button_20 = Button(
     relief="flat"
 )
 button_20.place(
-    x=408.0,
-    y=544.0,
+    x=411.0,
+    y=484.0,
     width=70.0,
-    height=40.0
+    height=41.0
 )
 
 button_image_21 = PhotoImage(
@@ -405,10 +397,10 @@ button_21 = Button(
     relief="flat"
 )
 button_21.place(
-    x=318.0,
-    y=485.0,
+    x=411.0,
+    y=543.0,
     width=70.0,
-    height=40.0
+    height=41.0
 )
 
 button_image_22 = PhotoImage(
@@ -421,10 +413,34 @@ button_22 = Button(
     relief="flat"
 )
 button_22.place(
-    x=318.0,
-    y=544.0,
+    x=411.0,
+    y=484.0,
     width=70.0,
-    height=40.0
+    height=41.0
+)
+
+image_image_3 = PhotoImage(
+    file=relative_to_assets("image_3.png"))
+image_3 = canvas.create_image(
+    57.0,
+    446.0,
+    image=image_image_3
+)
+
+image_image_4 = PhotoImage(
+    file=relative_to_assets("image_4.png"))
+image_4 = canvas.create_image(
+    153.0,
+    623.0,
+    image=image_image_4
+)
+
+image_image_5 = PhotoImage(
+    file=relative_to_assets("image_5.png"))
+image_5 = canvas.create_image(
+    247.0,
+    446.0,
+    image=image_image_5
 )
 
 button_image_23 = PhotoImage(
@@ -437,10 +453,42 @@ button_23 = Button(
     relief="flat"
 )
 button_23.place(
-    x=213.0,
-    y=485.0,
+    x=325.0,
+    y=426.0,
     width=70.0,
-    height=40.0
+    height=41.0
+)
+
+image_image_6 = PhotoImage(
+    file=relative_to_assets("image_6.png"))
+image_6 = canvas.create_image(
+    248.0,
+    623.0,
+    image=image_image_6
+)
+
+image_image_7 = PhotoImage(
+    file=relative_to_assets("image_7.png"))
+image_7 = canvas.create_image(
+    248.0,
+    504.0,
+    image=image_image_7
+)
+
+image_image_8 = PhotoImage(
+    file=relative_to_assets("image_8.png"))
+image_8 = canvas.create_image(
+    446.0,
+    504.0,
+    image=image_image_8
+)
+
+image_image_9 = PhotoImage(
+    file=relative_to_assets("image_9.png"))
+image_9 = canvas.create_image(
+    446.0,
+    563.0,
+    image=image_image_9
 )
 
 button_image_24 = PhotoImage(
@@ -453,10 +501,82 @@ button_24 = Button(
     relief="flat"
 )
 button_24.place(
-    x=213.0,
-    y=544.0,
+    x=411.0,
+    y=426.0,
     width=70.0,
-    height=40.0
+    height=41.0
+)
+
+image_image_10 = PhotoImage(
+    file=relative_to_assets("image_10.png"))
+image_10 = canvas.create_image(
+    360.0,
+    563.0,
+    image=image_image_10
+)
+
+image_image_11 = PhotoImage(
+    file=relative_to_assets("image_11.png"))
+image_11 = canvas.create_image(
+    152.0,
+    563.0,
+    image=image_image_11
+)
+
+image_image_12 = PhotoImage(
+    file=relative_to_assets("image_12.png"))
+image_12 = canvas.create_image(
+    152.0,
+    504.0,
+    image=image_image_12
+)
+
+image_image_13 = PhotoImage(
+    file=relative_to_assets("image_13.png"))
+image_13 = canvas.create_image(
+    153.0,
+    445.0,
+    image=image_image_13
+)
+
+image_image_14 = PhotoImage(
+    file=relative_to_assets("image_14.png"))
+image_14 = canvas.create_image(
+    56.0,
+    563.0,
+    image=image_image_14
+)
+
+image_image_15 = PhotoImage(
+    file=relative_to_assets("image_15.png"))
+image_15 = canvas.create_image(
+    57.0,
+    623.0,
+    image=image_image_15
+)
+
+image_image_16 = PhotoImage(
+    file=relative_to_assets("image_16.png"))
+image_16 = canvas.create_image(
+    57.0,
+    504.0,
+    image=image_image_16
+)
+
+image_image_17 = PhotoImage(
+    file=relative_to_assets("image_17.png"))
+image_17 = canvas.create_image(
+    360.0,
+    446.0,
+    image=image_image_17
+)
+
+image_image_18 = PhotoImage(
+    file=relative_to_assets("image_18.png"))
+image_18 = canvas.create_image(
+    446.0,
+    446.0,
+    image=image_image_18
 )
 
 button_image_25 = PhotoImage(
@@ -469,395 +589,26 @@ button_25 = Button(
     relief="flat"
 )
 button_25.place(
-    x=117.0,
-    y=485.0,
-    width=70.0,
-    height=40.0
-)
-
-button_image_26 = PhotoImage(
-    file=relative_to_assets("button_26.png"))
-button_26 = Button(
-    image=button_image_26,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_26 clicked"),
-    relief="flat"
-)
-button_26.place(
-    x=117.0,
-    y=544.0,
-    width=70.0,
-    height=40.0
-)
-
-button_image_27 = PhotoImage(
-    file=relative_to_assets("image_5.png"))
-button_27 = Button(
-    image=button_image_27,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_4 clicked"),
-    relief="flat"
-)
-button_27.place(
-    x=22.0,
-    y=485.0,
-    width=70.0,
-    height=40.0
-)
-
-button_image_28 = PhotoImage(
-    file=relative_to_assets("button_28.png"))
-button_28 = Button(
-    image=button_image_28,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_28 clicked"),
-    relief="flat"
-)
-button_28.place(
-    x=22.0,
-    y=544.0,
-    width=70.0,
-    height=40.0
-)
-
-button_image_29 = PhotoImage(
-    file=relative_to_assets("button_29.png"))
-button_29 = Button(
-    image=button_image_29,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_29 clicked"),
-    relief="flat"
-)
-button_29.place(
-    x=408.0,
-    y=544.0,
-    width=70.0,
-    height=40.0
-)
-
-button_image_30 = PhotoImage(
-    file=relative_to_assets("button_30.png"))
-button_30 = Button(
-    image=button_image_30,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_30 clicked"),
-    relief="flat"
-)
-button_30.place(
-    x=408.0,
+    x=325.0,
     y=603.0,
     width=70.0,
-    height=40.0
-)
-
-button_image_31 = PhotoImage(
-    file=relative_to_assets("button_31.png"))
-button_31 = Button(
-    image=button_image_31,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_31 clicked"),
-    relief="flat"
-)
-button_31.place(
-    x=318.0,
-    y=544.0,
-    width=70.0,
-    height=40.0
-)
-
-button_image_32 = PhotoImage(
-    file=relative_to_assets("button_32.png"))
-button_32 = Button(
-    image=button_image_32,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_32 clicked"),
-    relief="flat"
-)
-button_32.place(
-    x=318.0,
-    y=603.0,
-    width=70.0,
-    height=40.0
-)
-
-button_image_33 = PhotoImage(
-    file=relative_to_assets("button_33.png"))
-button_33 = Button(
-    image=button_image_33,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_33 clicked"),
-    relief="flat"
-)
-button_33.place(
-    x=213.0,
-    y=544.0,
-    width=70.0,
-    height=40.0
-)
-
-button_image_34 = PhotoImage(
-    file=relative_to_assets("button_34.png"))
-button_34 = Button(
-    image=button_image_34,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_34 clicked"),
-    relief="flat"
-)
-button_34.place(
-    x=213.0,
-    y=603.0,
-    width=70.0,
-    height=40.0
-)
-
-button_image_35 = PhotoImage(
-    file=relative_to_assets("image_9.png"))
-button_35 = Button(
-    image=button_image_35,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_2 clicked"),
-    relief="flat"
-)
-button_35.place(
-    x=117.0,
-    y=544.0,
-    width=70.0,
-    height=40.0
-)
-
-button_image_36 = PhotoImage(
-    file=relative_to_assets("button_36.png"))
-button_36 = Button(
-    image=button_image_36,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_36 clicked"),
-    relief="flat"
-)
-button_36.place(
-    x=117.0,
-    y=603.0,
-    width=70.0,
-    height=40.0
-)
-
-button_image_37 = PhotoImage(
-    file=relative_to_assets("button_37.png"))
-button_37 = Button(
-    image=button_image_37,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_37 clicked"),
-    relief="flat"
-)
-button_37.place(
-    x=22.0,
-    y=544.0,
-    width=70.0,
-    height=40.0
-)
-
-button_image_38 = PhotoImage(
-    file=relative_to_assets("image_4.png"))
-button_38 = Button(
-    image=button_image_38,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_1 clicked"),
-    relief="flat"
-)
-button_38.place(
-    x=22.0,
-    y=544.0,
-    width=70.0,
-    height=40.0
-)
-
-button_image_39 = PhotoImage(
-    file=relative_to_assets("button_39.png"))
-button_39 = Button(
-    image=button_image_39,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_39 clicked"),
-    relief="flat"
-)
-button_39.place(
-    x=22.0,
-    y=603.0,
-    width=70.0,
-    height=40.0
-)
-
-canvas.create_text(
-    47.0,
-    611.0,
-    anchor="nw",
-    text="0",
-    fill="#000000",
-    font=("Inter Black", 32 * -1)
-)
-
-image_image_4 = PhotoImage(
-    file=relative_to_assets("image_4.png"))
-image_4 = canvas.create_image(
-    57.0,
-    563.0,
-    image=image_image_4
-)
-
-image_image_5 = PhotoImage(
-    file=relative_to_assets("image_5.png"))
-image_5 = canvas.create_image(
-    57.0,
-    504.0,
-    image=image_image_5
-)
-
-image_image_6 = PhotoImage(
-    file=relative_to_assets("image_6.png"))
-image_6 = canvas.create_image(
-    57.0,
-    445.0,
-    image=image_image_6
-)
-
-image_image_7 = PhotoImage(
-    file=relative_to_assets("image_7.png"))
-image_7 = canvas.create_image(
-    152.0,
-    445.0,
-    image=image_image_7
-)
-
-image_image_8 = PhotoImage(
-    file=relative_to_assets("image_8.png"))
-image_8 = canvas.create_image(
-    248.0,
-    445.0,
-    image=image_image_8
-)
-
-image_image_9 = PhotoImage(
-    file=relative_to_assets("image_9.png"))
-image_9 = canvas.create_image(
-    152.0,
-    563.0,
-    image=image_image_9
-)
-
-image_image_10 = PhotoImage(
-    file=relative_to_assets("image_10.png"))
-image_10 = canvas.create_image(
-    152.0,
-    622.0,
-    image=image_image_10
-)
-
-image_image_11 = PhotoImage(
-    file=relative_to_assets("image_11.png"))
-image_11 = canvas.create_image(
-    152.0,
-    504.0,
-    image=image_image_11
-)
-
-image_image_12 = PhotoImage(
-    file=relative_to_assets("image_12.png"))
-image_12 = canvas.create_image(
-    248.0,
-    504.0,
-    image=image_image_12
-)
-
-image_image_13 = PhotoImage(
-    file=relative_to_assets("image_13.png"))
-image_13 = canvas.create_image(
-    247.0,
-    563.0,
-    image=image_image_13
-)
-
-image_image_14 = PhotoImage(
-    file=relative_to_assets("image_14.png"))
-image_14 = canvas.create_image(
-    248.0,
-    622.0,
-    image=image_image_14
-)
-
-image_image_15 = PhotoImage(
-    file=relative_to_assets("image_15.png"))
-image_15 = canvas.create_image(
-    354.0,
-    445.0,
-    image=image_image_15
-)
-
-image_image_16 = PhotoImage(
-    file=relative_to_assets("image_16.png"))
-image_16 = canvas.create_image(
-    352.0,
-    622.0,
-    image=image_image_16
-)
-
-image_image_17 = PhotoImage(
-    file=relative_to_assets("image_17.png"))
-image_17 = canvas.create_image(
-    354.0,
-    507.0,
-    image=image_image_17
-)
-
-image_image_18 = PhotoImage(
-    file=relative_to_assets("image_18.png"))
-image_18 = canvas.create_image(
-    354.0,
-    564.0,
-    image=image_image_18
+    height=41.0
 )
 
 image_image_19 = PhotoImage(
     file=relative_to_assets("image_19.png"))
 image_19 = canvas.create_image(
-    442.0,
-    563.0,
+    360.0,
+    624.0,
     image=image_image_19
 )
 
 image_image_20 = PhotoImage(
     file=relative_to_assets("image_20.png"))
 image_20 = canvas.create_image(
-    444.0,
+    446.0,
     623.0,
     image=image_image_20
-)
-
-image_image_21 = PhotoImage(
-    file=relative_to_assets("image_21.png"))
-image_21 = canvas.create_image(
-    442.0,
-    505.0,
-    image=image_image_21
-)
-
-image_image_22 = PhotoImage(
-    file=relative_to_assets("image_22.png"))
-image_22 = canvas.create_image(
-    444.0,
-    445.0,
-    image=image_image_22
 )
 window.resizable(False, False)
 window.mainloop()
