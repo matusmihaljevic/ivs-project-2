@@ -16,5 +16,15 @@ Program bude distribuován s otevřenými zdrojovými texty pod licencí GNU GPL
 $ sudo apt install python3
 $ sudo apt install python3-pip
 $ sudo pip install pytest
+$ cd src/
 $ pytest tests.py
+```
+
+## Spustenie GUI
+
+```
+$ sudo apt install python3
+$ sudo apt install python3-tk
+$ cd src/
+$ python3 gui.py
 ```
