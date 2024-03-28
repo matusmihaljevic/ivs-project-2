@@ -1,3 +1,7 @@
+## @file math_tests.py
+## @brief Testy pre matematickú knižnicu
+## @author Jaroslav Podmajerský
+
 import pytest
 import calc as calc
 import math
@@ -90,7 +94,7 @@ def test_root():
     assert result == pytest.approx((math.sqrt(2)/2))
 
     with pytest.raises(ValueError):       
-        calc.root(3, -3)
+        calc.root(-3, 3)
     with pytest.raises(ValueError):       
         calc.root(2, 1.5)
     
@@ -117,3 +121,4 @@ def test_LOG():
         calc.log(0,4)
     with pytest.raises(ValueError):       
         calc.log(1,4)
+    
