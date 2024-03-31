@@ -54,10 +54,9 @@ def fact(n: int) -> int:
     """
     @brief Faktoriál prirodzeného čísla
     @return Faktoriál n!
-    @raise ValueError Ak číslo nie je integer alebo je záporné
+    @raise ValueError Ak je číslo záporné
     """    
-    if not isinstance(n, int):
-        raise TypeError("Číslo musí byť prirodzené")
+    n = int(n)
     
     if n < 0:
         raise ValueError("Číslo nesmie byť záporné")
@@ -77,13 +76,11 @@ def pow(base : float, exponent: int) -> float:
     @param base Základ
     @param exponent Exponent
     @raise ValueError Ak je základ rovný 0 a exponent záporné číslo
-    @raise ValueError Ak exponent nie je integer
     """    
+    exponent = int(exponent)
+    
     if (base == 0) and (exponent < 0):
         raise ValueError("Delenie nulou")
-
-    if not isinstance(exponent, int):
-        raise ValueError("Exponent musí byť celé číslo")
 
     return base ** exponent
 
@@ -94,14 +91,14 @@ def root(base: float, index: int) -> float:
     @return x^{1/n}
     @param base Základ
     @param index Index
-    @raise ValueError Ak index nie je integer
     @raise ValueError Ak je index menší alebo rovný 0
     @raise ValueError Ak je základ záporný a index kladný
     """    
     initialGuess = 1
     tolerance = 1e-16
-
-    if (not isinstance(index, int)) or (index <= 0):
+    index = int(index)
+    
+    if index <= 0:
         raise ValueError("Index musí byť prirodzené číslo")
 
     if (base < 0) and (index % 2 == 0):
@@ -111,7 +108,7 @@ def root(base: float, index: int) -> float:
     while True:
         nextGuess = ((index - 1) * guess + base / (guess ** (index - 1))) / index
         if abs(nextGuess - guess) < tolerance:
-            return round(nextGuess, 7)
+            return nextGuess
         guess = nextGuess    
 
 
@@ -127,9 +124,9 @@ def ln(n: float) -> float:
     if n == 1:
         return 0
     
-    iterations = 100000000
+    iterations = 1000000000
     result = iterations * ((n ** (1/iterations)) - 1)
-    return round(result, 7)
+    return result
 
 
 def log(base: float, argument: float) -> float:
@@ -150,4 +147,4 @@ def log(base: float, argument: float) -> float:
     iterations = 100000000
     result = (iterations * ((argument ** (1/iterations)) - 1)) / (iterations * ((base ** (1/iterations)) - 1))
 
-    return round(result, 7)
+    return result
