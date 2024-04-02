@@ -47,6 +47,8 @@ def int_div(a : float, b: float) -> int:
     if(b == 0):
         raise ZeroDivisionError("Delenie nulou")
 
+    a = int(a)
+    b = int(b)
     return int(a // b)    
 
 
@@ -56,7 +58,13 @@ def fact(n: int) -> int:
     @return Faktoriál n!
     @raise ValueError Ak je číslo záporné
     """    
-    n = int(n)
+    if not isinstance(n, (int, float)):
+        raise ValueError("Číslo musí byť prirodzené")
+
+    if isinstance(n, float) and n.is_integer():
+        n = int(n)
+    elif not isinstance(n, int):
+        raise ValueError("Číslo musí byť prirodzené")
     
     if n < 0:
         raise ValueError("Číslo nesmie byť záporné")
@@ -77,7 +85,8 @@ def pow(base : float, exponent: int) -> float:
     @param exponent Exponent
     @raise ValueError Ak je základ rovný 0 a exponent záporné číslo
     """    
-    exponent = int(exponent)
+    if not isinstance(exponent,  int):
+        raise ValueError("Exponent musí byť prirodzené číslo")
     
     if (base == 0) and (exponent < 0):
         raise ValueError("Delenie nulou")
@@ -96,8 +105,13 @@ def root(base: float, index: int) -> float:
     """    
     initialGuess = 1
     tolerance = 1e-16
-    index = int(index)
-    
+    if not isinstance(index, (int, float)):
+        raise ValueError("Číslo musí byť prirodzené")
+
+    if isinstance(index, float) and index.is_integer():
+        index = int(index)
+    elif not isinstance(index, int):
+        raise ValueError("Číslo musí byť prirodzené")
     if index <= 0:
         raise ValueError("Index musí byť prirodzené číslo")
 
@@ -124,12 +138,12 @@ def ln(n: float) -> float:
     if n == 1:
         return 0
     
-    iterations = 1000000000
+    iterations = 100000000
     result = iterations * ((n ** (1/iterations)) - 1)
     return result
 
 
-def log(base: float, argument: float) -> float:
+def log(base: int, argument: float) -> float:
     """
     @brief Logaritmus čísla argument o základe base
     @return log(argument)
@@ -138,6 +152,14 @@ def log(base: float, argument: float) -> float:
     @raise ValueError ak je argument záporné číslo
     @raise ValueError ak je základ <= 1
     """
+    if not isinstance(base, (int, float)):
+        raise ValueError("Číslo musí byť prirodzené")
+
+    if isinstance(base, float) and round(base, 6).is_integer():
+        base = int(base)
+    elif not isinstance(base, int):
+        raise ValueError("Číslo musí byť prirodzené")
+    
     if argument <= 0:
         raise ValueError("log(x) nie je definovaný pre x <= 0")
     
