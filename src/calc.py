@@ -47,8 +47,6 @@ def int_div(a : float, b: float) -> int:
     if(b == 0):
         raise ZeroDivisionError("Delenie nulou")
 
-    a = int(a)
-    b = int(b)
     return int(a // b)    
 
 
@@ -59,12 +57,12 @@ def fact(n: int) -> int:
     @raise ValueError Ak je číslo záporné
     """    
     if not isinstance(n, (int, float)):
-        raise ValueError("Číslo musí byť prirodzené")
+        raise TypeError("Číslo musí byť prirodzené")
 
     if isinstance(n, float) and n.is_integer():
         n = int(n)
     elif not isinstance(n, int):
-        raise ValueError("Číslo musí byť prirodzené")
+        raise TypeError("Číslo musí byť prirodzené")
     
     if n < 0:
         raise ValueError("Číslo nesmie byť záporné")
@@ -103,8 +101,6 @@ def root(base: float, index: int) -> float:
     @raise ValueError Ak je index menší alebo rovný 0
     @raise ValueError Ak je základ záporný a index kladný
     """    
-    initialGuess = 1
-    tolerance = 1e-16
     if not isinstance(index, (int, float)):
         raise ValueError("Číslo musí byť prirodzené")
 
@@ -118,13 +114,7 @@ def root(base: float, index: int) -> float:
     if (base < 0) and (index % 2 == 0):
         raise ValueError("Párna odmocnina nie je definovaná pre záporné čísla")
 
-    guess = initialGuess
-    while True:
-        nextGuess = ((index - 1) * guess + base / (guess ** (index - 1))) / index
-        if abs(nextGuess - guess) < tolerance:
-            return nextGuess
-        guess = nextGuess    
-
+    return base**(1/index)
 
 def ln(n: float) -> float:
     """
