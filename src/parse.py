@@ -42,7 +42,13 @@ def _split_expression(expression: str) -> list:
             unary_operators_to_delete.extend([i, i+1])  
             
     for idx in sorted(unary_operators_to_delete, reverse=True):
-        del words[idx]                
+        del words[idx]  
+        
+    # Zisti, či sa za sebou nachádzajú 2 operátory a jeden z nich nie je unárny mínus   
+    for i in range(len(words) - 1):
+        if (words[i] in precedence) and (words[i] !="!") and (words[i+1] in precedence) and (words[i+1] not in ['u-', 'log', 'ln']):
+            raise SyntaxError("Syntaktická chyba")
+                  
     
     return words
 
@@ -109,6 +115,8 @@ def evaluate(expression: str) -> float:
     try:
         words = _split_expression(expression)
         parsed_words = _parse(words)
+        if(len(parsed_words) < 1):
+            raise SyntaxError("Nepovolený znak")
 
         evaluation_stack = []
 
@@ -152,11 +160,7 @@ def evaluate(expression: str) -> float:
                     evaluation_stack.append(pow(a, b))
                 elif parsed_word == '√':
                     evaluation_stack.append(root(b, a))
-                    
-            elif isinstance(parsed_word, list):
-                # Rekurzívne vyhodnotenie vnoreného výrazu
-                evaluation_stack.append(evaluate(' '.join(parsed_word)))
-                            
+                                         
         return float(evaluation_stack[0])
-    except (ValueError, ZeroDivisionError, SyntaxError) as e:
+    except (ValueError, ZeroDivisionError, TypeError) as e:
         return str(e)    
