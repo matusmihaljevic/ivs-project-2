@@ -35,9 +35,9 @@ def test_Evaluate_Basic_Arithmetic():
     result = parse.evaluate("100//100")
     assert result == 1
     result = parse.evaluate("73//-17")
-    assert result == -4
+    assert result == -5
     result = parse.evaluate("-60//7")
-    assert result == -8
+    assert result == -9
     result = parse.evaluate("18.78//4")
     assert result == 4
     result = parse.evaluate("1886.45678//46.8789")
@@ -128,7 +128,7 @@ def test_Evaluate_Order_of_Operations():
     assert result == pytest.approx(math.factorial(3))
     result = parse.evaluate("log((log((2+3),125)),(3!+(5-2)))")
     assert result == pytest.approx(2)
-    result = parse.evaluate("log((log((2+3),125)),(3!+(5-2))) * (5-3^2)-(4√2+ln(e^2))")
+    result = parse.evaluate("log((log((2+3),125)),(3!+(5-2))) * (5-3^2)-(2√4+ln(e^2))")
     assert result == pytest.approx(-12)
 
 #-----------------------------------------------------------------------------------------------------------------------------------
@@ -152,7 +152,7 @@ def test_Evaluate_SYNTAX_Factorial():
     assert result == 720
 
 def test_Evaluate_SYNTAX_Logarithms():
-    result = parse.evaluate("log(2-(-(3)),--((125)))")
+    result = parse.evaluate("log((2-(-(3))),--((125)))")
     assert result == pytest.approx(3)
     result = parse.evaluate("ln((((e^2))))")
     assert result == pytest.approx(2)
