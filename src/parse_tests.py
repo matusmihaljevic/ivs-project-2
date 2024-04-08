@@ -30,6 +30,23 @@ def test_Evaluate_Basic_Arithmetic():
     result = parse.evaluate("3√8-2*3^2")
     assert result == -16
 
+    result = parse.evaluate("3//2")
+    assert result == 1
+    result = parse.evaluate("100//100")
+    assert result == 1
+    result = parse.evaluate("73//-17")
+    assert result == -4
+    result = parse.evaluate("-60//7")
+    assert result == -8
+    result = parse.evaluate("18.78//4")
+    assert result == 4
+    result = parse.evaluate("1886.45678//46.8789")
+    assert result == 40
+    result = parse.evaluate("16//3+8")
+    assert result == 13
+    result = parse.evaluate("20//21")
+    assert result == 0
+
 def test_Evaluate_Basic_Arithmetic_FAILURE():
     result = parse.evaluate("1/0")
     assert result == "Delenie nulou"
@@ -41,7 +58,8 @@ def test_Evaluate_Basic_Arithmetic_FAILURE():
     assert result == "Index musí byť prirodzené číslo"
     result = parse.evaluate("2^1.5")
     assert result == "Exponent musí byť prirodzené číslo"
-    
+    result = parse.evaluate("2004//0")
+    assert result == "Delenie nulou"
 
 #-----------------------------------------------------------------------------------------------------------------------------------
 
@@ -98,8 +116,6 @@ def test_Evaluate_Order_of_Operations():
     
     result = parse.evaluate("3^(3-1)")
     assert result == 3**2
-    # result = parse.evaluate("(2*2+4)//(2^(3-2))")
-    # assert result == pytest.approx(2)
     result = parse.evaluate("((3+2.5)-0.5)^(3-ln(1))")
     assert result == pytest.approx(5**3)
 
@@ -112,7 +128,7 @@ def test_Evaluate_Order_of_Operations():
     assert result == pytest.approx(math.factorial(3))
     result = parse.evaluate("log((log((2+3),125)),(3!+(5-2)))")
     assert result == pytest.approx(2)
-    result = parse.evaluate("log((log((2+3),125)),(3!+(5-2))) * (5-3^2)-(4//2+ln(e^2))")
+    result = parse.evaluate("log((log((2+3),125)),(3!+(5-2))) * (5-3^2)-(4√2+ln(e^2))")
     assert result == pytest.approx(-12)
 
 #-----------------------------------------------------------------------------------------------------------------------------------
