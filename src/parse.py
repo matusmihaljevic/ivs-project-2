@@ -1,31 +1,33 @@
-"""
-Implementácia syntaktického analyzátora pre kalkulačku. 
-Analyzátor rozdelí string obsahujúci matematický výraz podľa regexu na jednotlivé slová, zapíše do post-fix notácie a spracuje.
-
-@file parse.py
-@brief Syntaktický analyzátor pre kalkulačku
-@author Matúš Mihaljevič
-"""
+## 
+# @file parse.py
+# @author Matúš Mihaljevič
+# @brief Syntaktický analyzátor pre kalkulačku
+#
+# Implementácia syntaktického analyzátora pre kalkulačku. 
+# Analyzátor rozdelí string obsahujúci matematický výraz podľa regexu na jednotlivé slová, zapíše do post-fix notácie a spracuje.
 
 import re
 from calc import *
 
+## Prorita operátorov
 precedence = {'+': 1, '-': 1, 'u-': 5, '*': 2, '/': 2, '^': 3, '//': 3, 'ln': 4, 'log': 4, '√': 4, '!': 4}
+## Eulerovo číslo
 e = 2.718281828459045
+## Ludolfovo číslo
 pi = 3.141592653589795
 
 
-def _split_expression(expression: str) -> list:
-    """
-    Rozdelí string obsahujúci matematický výraz podľa regexu na jednotlivé slová.
-    Vyčlení špeciálne slová ako ln a log.
-    Odmocninu očakáva ako binárnu operáciu index√základ. Napr. 3√64 == 4.
-    Logaritmus očakáva v tvare log(základ, argument).
-
-    @brief Rozdelí výraz na slová
-    @param expression Matematický výraz na spracovanie
-    @return Pole slov rozdelených podľa regexu
-    """    
+## 
+# @brief Rozdelí výraz na slová
+#
+# Rozdelí string obsahujúci matematický výraz podľa regexu na jednotlivé slová.
+# Vyčlení špeciálne slová ako ln a log.
+# Odmocninu očakáva ako binárnu operáciu index√základ. Napr. 3√64 == 4.
+# Logaritmus očakáva v tvare log(základ, argument).
+#
+# @param expression Matematický výraz na spracovanie
+# @return Pole slov rozdelených podľa regexu
+def split_expression(expression: str) -> list:
     words = re.findall(r'(?<!\d)\d*\.?\d+|\(|\)|//|log|ln|e|pi|[+*/-]|√|\S|!(?=\d)', expression) 
     
     unary_operators_to_delete = []                
@@ -53,17 +55,19 @@ def _split_expression(expression: str) -> list:
     return words
 
 
-def _parse(words: list) -> list:
-    """
-    Prechádza pole slov, operandy castuje na float a následne hneď zapisuje do @queue.
-    Operátory na základe priority buď vymení alebo ponechá poradie a následne tiež zapíše do @queue.
-    Samotné zátvorky už do @queue nezapisuje, spracuje operátory v ich vnútri.
-    
-    @brief Zapíše rozdelený zoznam do post-fix notácie
-    @param words Pole slov rozdelených podľa regexu
-    @return Pole operandov a operácií zapísané do post-fix notácie
-    """
+##    
+# @brief Zapíše rozdelený zoznam do post-fix notácie
+#
+# Prechádza pole slov, operandy castuje na float a následne hneď zapisuje do @queue.
+# Operátory na základe priority buď vymení alebo ponechá poradie a následne tiež zapíše do @queue.
+# Samotné zátvorky už do @queue nezapisuje, spracuje operátory v ich vnútri.
+#
+# @param words Pole slov rozdelených podľa regexu
+# @return Pole operandov a operácií zapísané do post-fix notácie
+def parse(words: list) -> list: 
+    ## Dočasné pole pre uloženie operandov a operácií v post-fix notácii
     queue = []
+    ## Zásobník operátorov
     operator_stack = []
         
     for word in words:        
@@ -82,7 +86,7 @@ def _parse(words: list) -> list:
             while operator_stack[-1] != '(':
                 queue.append(operator_stack.pop())
             nested_expression = operator_stack.pop()
-            queue += _parse(_split_expression(nested_expression[1:-1]))    
+            queue += parse(split_expression(nested_expression[1:-1]))    
         elif word == 'e':
             queue.append(e)   
         elif word == 'pi':
@@ -99,22 +103,22 @@ def _parse(words: list) -> list:
     return queue
 
 
+##
+# @brief Vyrieši matematický výraz
+#
+# Prechádza post-fix pole @parsed_words a pridáva postupne operandy na @evaluation_stack.
+# Ak narazí na operáciu, vykoná túto operáciu na operandoch na @evaluation_stack.
+# Výsledok operácie zapíše na začiatok @evaluation_stack a pokračuje v prechádzaní @parsed_words
+# 
+# @param expression Matematický výraz na spracovanie
+# @return Výsledok matematického výrazu
+# @exception SyntaxError pri nedostatku operandov 
+# @see split_expression
+# @see parse
 def evaluate(expression: str) -> float:
-    """
-    Prechádza post-fix pole @parsed_words a pridáva postupne operandy na @evaluation_stack.
-    Ak narazí na operáciu, vykoná túto operáciu na operandoch na @evaluation_stack.
-    Výsledok operácie zapíše na začiatok @evaluation_stack a pokračuje v prechádzaní @parsed_words
-    
-    @brief Vyrieši matematický výraz
-    @param expression Matematický výraz na spracovanie
-    @return Výsledok matematického výrazu
-    @raise SyntaxError pri nedostatku operandov 
-    @see _split_expression
-    @see _parse
-    """
     try:
-        words = _split_expression(expression)
-        parsed_words = _parse(words)
+        words = split_expression(expression)
+        parsed_words = parse(words)
         if(len(parsed_words) < 1):
             raise SyntaxError("Nepovolený znak")
 

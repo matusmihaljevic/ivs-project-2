@@ -1,6 +1,7 @@
-## @file parse_tests.py
-## @brief Testy pre matematickú knižnicu
-## @author Jaroslav Podmajerský
+## 
+# @file parse_tests.py
+# @brief Testy pre parser
+# @author Jaroslav Podmajerský
 
 import pytest
 import parse as parse
