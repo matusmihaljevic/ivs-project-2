@@ -83,7 +83,7 @@ def test_POW():
     with pytest.raises(ValueError):       
         calc.pow(2, 1.5)
         
-def test_root():
+def test_ROOT():
     result = calc.root(base=8,index=3)
     assert result == 2
     
@@ -94,7 +94,7 @@ def test_root():
     assert result == pytest.approx((math.sqrt(2)/2))
 
     with pytest.raises(ValueError):       
-        calc.root(-3, 3)
+        calc.root(3, -3)
     with pytest.raises(ValueError):       
         calc.root(2, 1.5)
     

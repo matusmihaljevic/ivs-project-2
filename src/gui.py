@@ -1,6 +1,7 @@
-## @file guic.py
-## @brief GUI pre kalkulačku
-## @author Kristián Pribila
+## 
+# @file gui.py
+# @brief GUI pre kalkulačku
+# @author Kristián Pribila
 
 
 from pathlib import Path
