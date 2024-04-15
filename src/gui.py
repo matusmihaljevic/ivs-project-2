@@ -5,8 +5,8 @@
 
 
 from pathlib import Path
-
-
+from tkinter import *
+import tkinter as tk
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
 
@@ -53,14 +53,14 @@ image_1 = canvas.create_image(
 
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png"))
-button_1 = Button(
+button_menu = Button(
     image=button_image_1,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_1 clicked"),
+    command=lambda: print("button_menu clicked"),
     relief="flat"
 )
-button_1.place(
+button_menu.place(
     x=15.0,
     y=19.0,
     width=35.0,
@@ -69,14 +69,14 @@ button_1.place(
 
 button_image_2 = PhotoImage(
     file=relative_to_assets("button_2.png"))
-button_2 = Button(
+button_mod = Button(
     image=button_image_2,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_2 clicked"),
+    command=lambda: print("button_mod clicked"),
     relief="flat"
 )
-button_2.place(
+button_mod.place(
     x=169.0,
     y=22.0,
     width=35.0,
@@ -99,16 +99,32 @@ canvas.create_rectangle(
     fill="#D9D9D9",
     outline="")
 
+
+custom_font = ("Inter", 22, "bold") 
+
+
+e = tk.Entry(canvas, font=custom_font)
+e.place(x=15, y=116, width=466, height=126)
+
+
+def button_click(number):
+    current = e.get()
+    e.delete(0, END)
+    e.insert(0,current + number)
+
+def button_clear():
+    e.delete(0, END)
+
 button_image_3 = PhotoImage(
     file=relative_to_assets("button_3.png"))
-button_3 = Button(
+button_0 = Button(window,
     image=button_image_3,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_3 clicked"),
+    command=lambda: button_click("0"),
     relief="flat"
 )
-button_3.place(
+button_0.place(
     x=22.0,
     y=603.0,
     width=70.0,
@@ -117,14 +133,14 @@ button_3.place(
 
 button_image_4 = PhotoImage(
     file=relative_to_assets("button_4.png"))
-button_4 = Button(
+button_1 = Button(window,
     image=button_image_4,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_4 clicked"),
+    command=lambda: button_click("1"),
     relief="flat"
 )
-button_4.place(
+button_1.place(
     x=21.0,
     y=543.0,
     width=70.0,
@@ -133,14 +149,14 @@ button_4.place(
 
 button_image_5 = PhotoImage(
     file=relative_to_assets("button_5.png"))
-button_5 = Button(
+button_4 = Button(window,
     image=button_image_5,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_5 clicked"),
+    command=lambda: button_click("4"),
     relief="flat"
 )
-button_5.place(
+button_4.place(
     x=21.0,
     y=484.0,
     width=70.0,
@@ -149,14 +165,14 @@ button_5.place(
 
 button_image_6 = PhotoImage(
     file=relative_to_assets("button_6.png"))
-button_6 = Button(
+button_7 = Button(window,
     image=button_image_6,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_6 clicked"),
+    command=lambda: button_click("7"),
     relief="flat"
 )
-button_6.place(
+button_7.place(
     x=22.0,
     y=426.0,
     width=70.0,
@@ -165,14 +181,14 @@ button_6.place(
 
 button_image_7 = PhotoImage(
     file=relative_to_assets("button_7.png"))
-button_7 = Button(
+button_com = Button(window,
     image=button_image_7,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_7 clicked"),
+    command=lambda: button_click(","),
     relief="flat"
 )
-button_7.place(
+button_com.place(
     x=118.0,
     y=603.0,
     width=70.0,
@@ -181,14 +197,14 @@ button_7.place(
 
 button_image_8 = PhotoImage(
     file=relative_to_assets("button_8.png"))
-button_8 = Button(
+button_2 = Button(window,
     image=button_image_8,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_8 clicked"),
+    command=lambda: button_click("2"),
     relief="flat"
 )
-button_8.place(
+button_2.place(
     x=117.0,
     y=543.0,
     width=70.0,
@@ -197,14 +213,14 @@ button_8.place(
 
 button_image_9 = PhotoImage(
     file=relative_to_assets("button_9.png"))
-button_9 = Button(
+button_5 = Button(window,
     image=button_image_9,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_9 clicked"),
+    command=lambda: button_click("5"),
     relief="flat"
 )
-button_9.place(
+button_5.place(
     x=117.0,
     y=484.0,
     width=70.0,
@@ -213,14 +229,14 @@ button_9.place(
 
 button_image_10 = PhotoImage(
     file=relative_to_assets("button_10.png"))
-button_10 = Button(
+button_8 = Button(window,
     image=button_image_10,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_10 clicked"),
+    command=lambda: button_click("9"),
     relief="flat"
 )
-button_10.place(
+button_8.place(
     x=118.0,
     y=426.0,
     width=70.0,
@@ -229,14 +245,14 @@ button_10.place(
 
 button_image_11 = PhotoImage(
     file=relative_to_assets("button_11.png"))
-button_11 = Button(
+button_pi = Button(window,
     image=button_image_11,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_11 clicked"),
+    command=lambda: button_click("π"),
     relief="flat"
 )
-button_11.place(
+button_pi.place(
     x=213.0,
     y=603.0,
     width=70.0,
@@ -245,14 +261,14 @@ button_11.place(
 
 button_image_12 = PhotoImage(
     file=relative_to_assets("button_12.png"))
-button_12 = Button(
+button_3 = Button(window,
     image=button_image_12,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_12 clicked"),
+    command=lambda: button_click("3"),
     relief="flat"
 )
-button_12.place(
+button_3.place(
     x=212.0,
     y=543.0,
     width=70.0,
@@ -261,14 +277,14 @@ button_12.place(
 
 button_image_13 = PhotoImage(
     file=relative_to_assets("button_13.png"))
-button_13 = Button(
+button_eq = Button(
     image=button_image_13,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_13 clicked"),
+    command=lambda: print("button_= clicked"),
     relief="flat"
 )
-button_13.place(
+button_eq.place(
     x=411.0,
     y=603.0,
     width=70.0,
@@ -277,14 +293,14 @@ button_13.place(
 
 button_image_14 = PhotoImage(
     file=relative_to_assets("button_14.png"))
-button_14 = Button(
+button_6 = Button(window,
     image=button_image_14,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_14 clicked"),
+    command=lambda: button_click("6"),
     relief="flat"
 )
-button_14.place(
+button_6.place(
     x=212.0,
     y=484.0,
     width=70.0,
@@ -293,14 +309,14 @@ button_14.place(
 
 button_image_15 = PhotoImage(
     file=relative_to_assets("button_15.png"))
-button_15 = Button(
+button_9 = Button(window,
     image=button_image_15,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_15 clicked"),
+    command=lambda: button_click("9"),
     relief="flat"
 )
-button_15.place(
+button_9.place(
     x=213.0,
     y=426.0,
     width=70.0,
@@ -309,14 +325,14 @@ button_15.place(
 
 button_image_16 = PhotoImage(
     file=relative_to_assets("button_16.png"))
-button_16 = Button(
+button_plus = Button(window,
     image=button_image_16,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_16 clicked"),
+    command=lambda: button_click("+"),
     relief="flat"
 )
-button_16.place(
+button_plus.place(
     x=312.0,
     y=543.0,
     width=70.0,
@@ -325,78 +341,31 @@ button_16.place(
 
 button_image_17 = PhotoImage(
     file=relative_to_assets("button_17.png"))
-button_17 = Button(
+button_mul = Button(
     image=button_image_17,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_17 clicked"),
+    command=lambda: button_click("*"),
     relief="flat"
 )
-button_17.place(
+button_mul.place(
     x=312.0,
     y=484.0,
     width=70.0,
     height=41.0
 )
 
-button_image_18 = PhotoImage(
-    file=relative_to_assets("button_18.png"))
-button_18 = Button(
-    image=button_image_18,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_18 clicked"),
-    relief="flat"
-)
-button_18.place(
-    x=411.0,
-    y=484.0,
-    width=70.0,
-    height=41.0
-)
-
-button_image_19 = PhotoImage(
-    file=relative_to_assets("button_19.png"))
-button_19 = Button(
-    image=button_image_19,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_19 clicked"),
-    relief="flat"
-)
-button_19.place(
-    x=411.0,
-    y=543.0,
-    width=70.0,
-    height=41.0
-)
-
-button_image_20 = PhotoImage(
-    file=relative_to_assets("button_20.png"))
-button_20 = Button(
-    image=button_image_20,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_20 clicked"),
-    relief="flat"
-)
-button_20.place(
-    x=411.0,
-    y=484.0,
-    width=70.0,
-    height=41.0
-)
 
 button_image_21 = PhotoImage(
     file=relative_to_assets("button_21.png"))
-button_21 = Button(
+button_min = Button(window,
     image=button_image_21,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_21 clicked"),
+    command=lambda: button_click("-"),
     relief="flat"
 )
-button_21.place(
+button_min.place(
     x=411.0,
     y=543.0,
     width=70.0,
@@ -405,14 +374,14 @@ button_21.place(
 
 button_image_22 = PhotoImage(
     file=relative_to_assets("button_22.png"))
-button_22 = Button(
+button_div = Button(window,
     image=button_image_22,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_22 clicked"),
+    command=lambda: button_click("/"),
     relief="flat"
 )
-button_22.place(
+button_div.place(
     x=411.0,
     y=484.0,
     width=70.0,
@@ -421,14 +390,14 @@ button_22.place(
 
 button_image_23 = PhotoImage(
     file=relative_to_assets("button_23.png"))
-button_23 = Button(
+button_del = Button(window,
     image=button_image_23,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_23 clicked"),
+    command=lambda: print("del"),
     relief="flat"
 )
-button_23.place(
+button_del.place(
     x=312.0,
     y=426.0,
     width=70.0,
@@ -437,14 +406,14 @@ button_23.place(
 
 button_image_24 = PhotoImage(
     file=relative_to_assets("button_24.png"))
-button_24 = Button(
+button_pow = Button(window,
     image=button_image_24,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_24 clicked"),
+    command=lambda: button_click("^()"),
     relief="flat"
 )
-button_24.place(
+button_pow.place(
     x=22.0,
     y=281.0,
     width=70.0,
@@ -453,14 +422,14 @@ button_24.place(
 
 button_image_25 = PhotoImage(
     file=relative_to_assets("button_25.png"))
-button_25 = Button(
+button_fac = Button(window,
     image=button_image_25,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_25 clicked"),
+    command=lambda: button_click("!"),
     relief="flat"
 )
-button_25.place(
+button_fac.place(
     x=22.0,
     y=336.0,
     width=70.0,
@@ -469,14 +438,14 @@ button_25.place(
 
 button_image_26 = PhotoImage(
     file=relative_to_assets("button_26.png"))
-button_26 = Button(
+button_r2 = Button(window,
     image=button_image_26,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_26 clicked"),
+    command=lambda: button_click("^(2)"),
     relief="flat"
 )
-button_26.place(
+button_r2.place(
     x=117.0,
     y=281.0,
     width=70.0,
@@ -485,14 +454,14 @@ button_26.place(
 
 button_image_27 = PhotoImage(
     file=relative_to_assets("button_27.png"))
-button_27 = Button(
+button_lb = Button(window,
     image=button_image_27,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_27 clicked"),
+    command=lambda: button_click("("),
     relief="flat"
 )
-button_27.place(
+button_lb.place(
     x=117.0,
     y=336.0,
     width=70.0,
@@ -501,14 +470,14 @@ button_27.place(
 
 button_image_28 = PhotoImage(
     file=relative_to_assets("button_28.png"))
-button_28 = Button(
+button_rb = Button(window,
     image=button_image_28,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_28 clicked"),
+    command=lambda: button_click(")"),
     relief="flat"
 )
-button_28.place(
+button_rb.place(
     x=212.0,
     y=337.0,
     width=70.0,
@@ -517,14 +486,14 @@ button_28.place(
 
 button_image_29 = PhotoImage(
     file=relative_to_assets("button_29.png"))
-button_29 = Button(
+button_ln = Button(window,
     image=button_image_29,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_29 clicked"),
+    command=lambda: button_click("ln()"),
     relief="flat"
 )
-button_29.place(
+button_ln.place(
     x=312.0,
     y=281.0,
     width=70.0,
@@ -533,14 +502,14 @@ button_29.place(
 
 button_image_30 = PhotoImage(
     file=relative_to_assets("button_30.png"))
-button_30 = Button(
+button_e = Button(window,
     image=button_image_30,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_30 clicked"),
+    command=lambda: button_click("e^()"),
     relief="flat"
 )
-button_30.place(
+button_e.place(
     x=213.0,
     y=281.0,
     width=70.0,
@@ -549,14 +518,14 @@ button_30.place(
 
 button_image_31 = PhotoImage(
     file=relative_to_assets("button_31.png"))
-button_31 = Button(
+button_ac = Button(window,
     image=button_image_31,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_31 clicked"),
+    command=lambda: button_clear(),
     relief="flat"
 )
-button_31.place(
+button_ac.place(
     x=411.0,
     y=426.0,
     width=70.0,
@@ -565,14 +534,14 @@ button_31.place(
 
 button_image_32 = PhotoImage(
     file=relative_to_assets("button_32.png"))
-button_32 = Button(
+button_ans = Button(
     image=button_image_32,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_32 clicked"),
+    command=lambda: print("button_ans clicked"),
     relief="flat"
 )
-button_32.place(
+button_ans.place(
     x=312.0,
     y=603.0,
     width=70.0,
@@ -581,14 +550,14 @@ button_32.place(
 
 button_image_33 = PhotoImage(
     file=relative_to_assets("button_33.png"))
-button_33 = Button(
+button_sqrt2 = Button(window,
     image=button_image_33,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_33 clicked"),
+    command=lambda: button_click("2√()"),
     relief="flat"
 )
-button_33.place(
+button_sqrt2.place(
     x=312.0,
     y=337.0,
     width=70.0,
@@ -597,34 +566,36 @@ button_33.place(
 
 button_image_34 = PhotoImage(
     file=relative_to_assets("button_34.png"))
-button_34 = Button(
+button_log = Button(window,
     image=button_image_34,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_34 clicked"),
+    command=lambda: button_click("log()()"),
     relief="flat"
 )
-button_34.place(
+button_log.place(
     x=394.0,
     y=278.0,
     width=91.0,
-    height=47.0
+    height=47.0 
 )
 
 button_image_35 = PhotoImage(
     file=relative_to_assets("button_35.png"))
-button_35 = Button(
+button_sqrtx = Button(window,
     image=button_image_35,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_35 clicked"),
+    command=lambda: button_click("√()"),
     relief="flat"
 )
-button_35.place(
+button_sqrtx.place(
     x=393.0,
     y=335.0,
     width=89.0,
     height=43.0
 )
+
+
 window.resizable(False, False)
 window.mainloop()
