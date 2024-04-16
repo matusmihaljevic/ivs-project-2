@@ -43,53 +43,6 @@ canvas.create_rectangle(
     fill="#808080",
     outline="")
 
-image_image_1 = PhotoImage(
-    file=relative_to_assets("image_1.png"))
-image_1 = canvas.create_image(
-    32.0,
-    33.0,
-    image=image_image_1
-)
-
-button_image_1 = PhotoImage(
-    file=relative_to_assets("button_1.png"))
-button_menu = Button(
-    image=button_image_1,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_menu clicked"),
-    relief="flat"
-)
-button_menu.place(
-    x=15.0,
-    y=19.0,
-    width=35.0,
-    height=29.0
-)
-
-button_image_2 = PhotoImage(
-    file=relative_to_assets("button_2.png"))
-button_mod = Button(
-    image=button_image_2,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_mod clicked"),
-    relief="flat"
-)
-button_mod.place(
-    x=169.0,
-    y=22.0,
-    width=35.0,
-    height=29.0
-)
-
-image_image_2 = PhotoImage(
-    file=relative_to_assets("image_2.png"))
-image_2 = canvas.create_image(
-    109.0,
-    35.0,
-    image=image_image_2
-)
 
 canvas.create_rectangle(
     15.0,
@@ -394,7 +347,7 @@ button_del = Button(window,
     image=button_image_23,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("del"),
+    command=lambda: button_click("del"),
     relief="flat"
 )
 button_del.place(
@@ -570,7 +523,7 @@ button_log = Button(window,
     image=button_image_34,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: button_click("log()()"),
+    command=lambda: button_click("log((),())"),
     relief="flat"
 )
 button_log.place(
@@ -596,6 +549,21 @@ button_sqrtx.place(
     height=43.0
 )
 
+button_image_36 = PhotoImage(
+    file=relative_to_assets("button_36.png"))
+button_36 = Button(
+    image=button_image_36,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: print("button_36 clicked"),
+    relief="flat"
+)
+button_36.place(
+    x=21.0,
+    y=18.0,
+    width=42.0,
+    height=32.0
+)
 
 window.resizable(False, False)
 window.mainloop()
