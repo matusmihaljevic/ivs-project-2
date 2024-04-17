@@ -8,6 +8,7 @@ from pathlib import Path
 from tkinter import *
 import tkinter as tk
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+import parse as parse
 
 
 OUTPUT_PATH = Path(__file__).parent
@@ -22,6 +23,7 @@ window = Tk()
 
 window.geometry("500x700")
 window.configure(bg = "#808080")
+window.title("Calculator")
 
 
 canvas = Canvas(
@@ -58,15 +60,70 @@ custom_font = ("Inter", 22, "bold")
 
 e = tk.Entry(canvas, font=custom_font)
 e.place(x=15, y=116, width=466, height=126)
+e.focus_set()
 
+ 
+ans = ""
 
 def button_click(number):
     current = e.get()
     e.delete(0, END)
     e.insert(0,current + number)
+    global ans
+    ans = str(current + number)
+    
+
+def button_answer(ans):
+    e.insert(0,ans)
+
+def button_delete():
+    global ans
+    ans = ans[:-1]
+    e.delete(0, END)
+    e.insert(0,ans)
+
+def button_equal(ans):
+    result = parse.evaluate(ans)
+    e.delete(0, END)
+    e.insert(0,str("=") + str(result))
+
 
 def button_clear():
     e.delete(0, END)
+
+
+def button_help():
+    root = Tk()
+
+    root.geometry("500x700")
+    root.configure(bg = "#808080")
+    root.title("Help")
+
+
+
+    canvas = Canvas(
+        root,
+        bg = "#808080",
+        height = 700,
+        width = 500,
+        bd = 0,
+        highlightthickness = 0,
+        relief = "ridge"
+        )
+    
+    canvas.place(x = 0, y = 0)
+    
+    canvas.create_rectangle(
+        0.0,
+        0.0,
+        500.0,
+        69.0,
+        fill="#808080",
+        outline="")
+    
+    root.resizable(False, False)
+    root.mainloop()
+
 
 button_image_3 = PhotoImage(
     file=relative_to_assets("button_3.png"))
@@ -186,7 +243,7 @@ button_8 = Button(window,
     image=button_image_10,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: button_click("9"),
+    command=lambda: button_click("8"),
     relief="flat"
 )
 button_8.place(
@@ -234,7 +291,7 @@ button_eq = Button(
     image=button_image_13,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_= clicked"),
+    command=lambda: button_equal(ans),
     relief="flat"
 )
 button_eq.place(
@@ -347,7 +404,7 @@ button_del = Button(window,
     image=button_image_23,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: button_click("del"),
+    command=button_delete,
     relief="flat"
 )
 button_del.place(
@@ -363,7 +420,7 @@ button_pow = Button(window,
     image=button_image_24,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: button_click("^()"),
+    command=lambda: button_click("^("),
     relief="flat"
 )
 button_pow.place(
@@ -443,7 +500,7 @@ button_ln = Button(window,
     image=button_image_29,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: button_click("ln()"),
+    command=lambda: button_click("ln("),
     relief="flat"
 )
 button_ln.place(
@@ -459,7 +516,7 @@ button_e = Button(window,
     image=button_image_30,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: button_click("e^()"),
+    command=lambda: button_click("e^("),
     relief="flat"
 )
 button_e.place(
@@ -491,7 +548,7 @@ button_ans = Button(
     image=button_image_32,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_ans clicked"),
+    command=lambda: button_answer(ans),
     relief="flat"
 )
 button_ans.place(
@@ -507,7 +564,7 @@ button_sqrt2 = Button(window,
     image=button_image_33,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: button_click("2√()"),
+    command=lambda: button_click("2√("),
     relief="flat"
 )
 button_sqrt2.place(
@@ -523,7 +580,7 @@ button_log = Button(window,
     image=button_image_34,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: button_click("log((),())"),
+    command=lambda: button_click("log("),
     relief="flat"
 )
 button_log.place(
@@ -539,7 +596,7 @@ button_sqrtx = Button(window,
     image=button_image_35,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: button_click("√()"),
+    command=lambda: button_click("√("),
     relief="flat"
 )
 button_sqrtx.place(
@@ -551,19 +608,20 @@ button_sqrtx.place(
 
 button_image_36 = PhotoImage(
     file=relative_to_assets("button_36.png"))
-button_36 = Button(
+button_h = Button(window,
     image=button_image_36,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_36 clicked"),
+    command=lambda: button_help(),
     relief="flat"
 )
-button_36.place(
+button_h.place(
     x=21.0,
     y=18.0,
     width=42.0,
     height=32.0
 )
+
 
 window.resizable(False, False)
 window.mainloop()
