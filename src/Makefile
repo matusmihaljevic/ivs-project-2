@@ -2,18 +2,12 @@
 .DEFAULT_GOAL := all
 
 # Variables
-GUI=gui.py
-MATH_LIB=calc.py
-MATH_TESTS=math_tests.py
-PARSE_TESTS=parse_tests.py
-PROFILE=profiling.py
-PROFILE_INPUT=data.txt
 ZIP_FILE=xbojnaa00_xmihalm00_xpodmaj00_xpribik00
 
 # Targets
 all: run
 
-pack: clean
+pack: doc clean
 	@rm -rf ../../$(ZIP_FILE)
 	@rm -rf ../../$(ZIP_FILE).zip
 	@mkdir -p ../../$(ZIP_FILE)/repo
@@ -32,17 +26,24 @@ clean:
 	@rm -rf __pycache__
 	@rm -rf .pytest_cache
 
-run: $(GUI)
-	@python3 $(GUI)
+run: gui.py
+	@python3 $<
 
-test: $(MATH_TESTS) $(PARSE_TESTS) clean
-	@pytest $(MATH_TESTS) || true
-	@pytest $(PARSE_TESTS) || true
+test: math_tests.py parse_tests.py clean
+	@pytest math_tests.py || true
+	@pytest parse_tests.py || true
 	@echo "Testing done."
 	@$(MAKE) clean
 	
-profile: $(PROFILE) $(PROFILE_INPUT)
-	@python3 $(PROFILE) < $(PROFILE_INPUT)
+profile: profiling.py data.txt
+	@python3 profiling.py < data.txt
+
+doc: Doxyfile
+	@rm -rf ../doc
+	@mkdir ../doc
+	@doxygen $<
+	@rm -rf latex/
+	@mv html/ ../doc
 
 help:
 	@echo "Available targets:"
@@ -52,6 +53,7 @@ help:
 	@echo "  run      - Run the program"
 	@echo "  test     - Run tests"
 	@echo "  profile  - Profile the program"
+	@echo "  doc      - Generate documentation"
 	@echo "  help     - Display this help message"
 
 # Phony
@@ -62,4 +64,5 @@ help:
 	run
 	test
 	profile
+	doc
 	help
