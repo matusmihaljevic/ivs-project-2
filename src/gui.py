@@ -23,7 +23,7 @@ window = Tk()
 
 window.geometry("500x700")
 window.configure(bg = "#808080")
-window.title("Calculator")
+window.title("Kalcoolačka")
 
 
 canvas = Canvas(
@@ -63,8 +63,8 @@ e.place(x=15, y=116, width=466, height=126)
 e.focus_set()
 
  
-ans = ""
-
+ans = "" 
+cond = 0
 def button_click(number):
     current = e.get()
     e.delete(0, END)
@@ -74,7 +74,14 @@ def button_click(number):
     
 
 def button_answer(ans):
-    e.insert(0,ans)
+    global cond
+    if cond==1:
+        result = parse.evaluate(ans)
+        e.delete(0, END)
+        e.insert(0,result)
+        cond = 0
+    else:
+        e.insert(0,ans)
 
 def button_delete():
     global ans
@@ -84,8 +91,10 @@ def button_delete():
 
 def button_equal(ans):
     result = parse.evaluate(ans)
+    global cond
+    cond=1
     e.delete(0, END)
-    e.insert(0,str("=") + str(result))
+    e.insert(0,str(result))
 
 
 def button_clear():
@@ -120,6 +129,39 @@ def button_help():
         69.0,
         fill="#808080",
         outline="")
+
+    help_font = ("Inter", 12, "bold") 
+    log_text = "Logaritmus sa zapisuje v našej kalkulačke ako log(a,b) kde a je základ logaritmu a b je aurgument"
+    del_text = "Tlačidlo DEL vymazáva posledný pridaný znak tak ako backspace"
+    ans_text = "Tlačidlo ANS vracia posledný zapísaný príkald"
+    ac_text = "Tlačidlo AC vymaže celý obsah displeja kalkulačky"
+    sqrt_text = "Odmocnina sa zapisuje v tvare 5√125"
+    celoc_text = "Celočíselné delenie sa zapisuje v našej kalkulačke ako 3//2 "
+    fac_text = "Faktoriál zapisujeme v tvare 5!"
+    
+
+    delete = tk.Label(root, text=del_text,font=help_font, bg="#808080",wraplength=490)
+    delete.place(x=10,y=40)
+
+    ans = tk.Label(root, text=ans_text,font=help_font, bg="#808080",wraplength=490)
+    ans.place(x=10,y=90)
+
+    ac = tk.Label(root, text=ac_text,font=help_font, bg="#808080",wraplength=490)
+    ac.place(x=10,y=140)
+    
+    sqrt = tk.Label(root, text=sqrt_text,font=help_font, bg="#808080",wraplength=490)
+    sqrt.place(x=10,y=190)
+
+    celoc = tk.Label(root, text=celoc_text,font=help_font, bg="#808080",wraplength=490)
+    celoc.place(x=10,y=240)
+
+    fac = tk.Label(root, text=fac_text,font=help_font, bg="#808080",wraplength=490)
+    fac.place(x=10,y=300)
+
+    log = tk.Label(root, text=log_text,font=help_font, bg="#808080",wraplength=490)
+    log.place(x=10,y=340)
+    
+    
     
     root.resizable(False, False)
     root.mainloop()
