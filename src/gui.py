@@ -7,7 +7,7 @@
 from pathlib import Path
 from tkinter import *
 import tkinter as tk
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+from tkinter import Tk, Canvas, Button, PhotoImage
 import parse as parse
 
 
@@ -68,6 +68,13 @@ cond = 0
 cond2 = 0
 comma = ""
 
+# @brief Stlačenie tlačidla 
+#
+# Pri každom stlačení niektorého z tlačidiel sa pomocu funkcie button_click pošle danný string a ten sa následne vytlačí 
+# po každom pridaní daľšieho znaku
+#
+# @param funkcia dostáva string 
+
 def button_click(number):
     global cond2
     global comma
@@ -82,6 +89,13 @@ def button_click(number):
         e.insert(0,current + number + comma)
     cond2=0
 
+# @brief Stlačenie tlačidla logaritmus 
+#
+# Po stlační logaritmu sa vytlačí log( a nastavý sa podmienka vypísania čiarky "cond2" je to kvoli parseru ten berie logaritmus 
+# ako log(a,b) kde a je zaklad a b je argument
+#
+# @param funkcia dostáva string 
+
 def button_logaritm(number):
     global cond2
     cond2 = 1
@@ -89,7 +103,12 @@ def button_logaritm(number):
     e.delete(0, END)
     e.insert(0,current + number )
     
-
+# @brief Stlačenie tlačidla answer
+#
+# Po stlační tlačidla answer sa vytlačí odpoveď s predošlého výpočtu. Riadiaca podmienka sa vyhodnocuje v funkcii button_equal 
+# pretože na žiatku je výsledok prázdny string
+#
+# @param funkcia dostáva string 
 
 def button_answer(ans):
     new_ans=""
@@ -106,12 +125,24 @@ def button_answer(ans):
     else:
         e.insert(0,new_ans)
         
+# @brief Stlačenie tlačidla delete
+#
+# Po stlační tlačidla delete odstráni posledný znak z pola a vymaže ho z okna. 
+#
+# @param funkcia dostáva string 
 
 def button_delete():
     global ans
     ans = ans[:-1]
     e.delete(0, END)
     e.insert(0,ans)
+
+# @brief Stlačenie tlačidla rovná sa
+#
+# Po stlační tlačidla rovná sa , to posiela string parseru ktorý ho vyhodnotí a pošle string späť.
+#
+# @param funkcia posiela string
+# @return funkcia evaluate vracia string
 
 def button_equal(ans):
     try:
@@ -122,6 +153,12 @@ def button_equal(ans):
     cond=1
     e.delete(0, END)
     e.insert(0,str(result))
+
+# @brief Stlačenie tlačidla clear all
+#
+# Po stlační tlačidla ac sa vymaže obsah celého okna
+#
+
 
 def button_clear():
     e.delete(0, END)
