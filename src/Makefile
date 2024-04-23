@@ -12,10 +12,9 @@ pack: doc clean
 	@rm -rf ../../$(ZIP_FILE).zip
 	@mkdir -p ../../$(ZIP_FILE)/repo
 
-	@cp -r ../ ../../$(ZIP_FILE)/repo
-	@cp -r ../install ../../$(ZIP_FILE)
-	@cp -r ../doc ../../$(ZIP_FILE)
-
+	@cp -rf ../ ../../$(ZIP_FILE)/repo
+	@cp -rf ../install ../../$(ZIP_FILE)
+	@cp -rf ../doc ../../$(ZIP_FILE)
 	@rm -rf ../../$(ZIP_FILE)/repo/install
 	@rm -rf ../../$(ZIP_FILE)/repo/doc
 
@@ -25,6 +24,7 @@ clean:
 	@echo "Cleaning..."
 	@rm -rf __pycache__
 	@rm -rf .pytest_cache
+	@rm -rf .vscode
 
 run: gui.py
 	@python3 $<
@@ -57,12 +57,4 @@ help:
 	@echo "  help     - Display this help message"
 
 # Phony
-.PHONY: 
-	all
-	pack
-	clean
-	run
-	test
-	profile
-	doc
-	help
+.PHONY:	all pack clean run test profile doc help

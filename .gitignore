@@ -3,4 +3,3 @@ src/.pytest_cache
 .vscode/
 playground/
 doc/
-install/
