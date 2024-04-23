@@ -65,23 +65,47 @@ e.focus_set()
  
 ans = "" 
 cond = 0
+cond2 = 0
+comma = ""
+
 def button_click(number):
+    global cond2
+    global comma
     current = e.get()
     e.delete(0, END)
     e.insert(0,current + number)
     global ans
     ans = str(current + number)
+    if cond2==1:
+        comma=str(",")
+        e.delete(0, END)
+        e.insert(0,current + number + comma)
+    cond2=0
+
+def button_logaritm(number):
+    global cond2
+    cond2 = 1
+    current = e.get()
+    e.delete(0, END)
+    e.insert(0,current + number )
     
 
+
 def button_answer(ans):
+    new_ans=""
     global cond
     if cond==1:
-        result = parse.evaluate(ans)
+        try:
+            result = parse.evaluate(ans)
+        except (SyntaxError) as error:
+            result = error
         e.delete(0, END)
         e.insert(0,result)
         cond = 0
+        new_ans=ans
     else:
-        e.insert(0,ans)
+        e.insert(0,new_ans)
+        
 
 def button_delete():
     global ans
@@ -90,12 +114,14 @@ def button_delete():
     e.insert(0,ans)
 
 def button_equal(ans):
-    result = parse.evaluate(ans)
+    try:
+        result = parse.evaluate(ans)
+    except (SyntaxError) as error:
+        result = error
     global cond
     cond=1
     e.delete(0, END)
     e.insert(0,str(result))
-
 
 def button_clear():
     e.delete(0, END)
@@ -237,7 +263,7 @@ button_com = Button(window,
     image=button_image_7,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: button_click(","),
+    command=lambda: button_click("."),
     relief="flat"
 )
 button_com.place(
@@ -333,7 +359,7 @@ button_eq = Button(
     image=button_image_13,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: button_equal(ans),
+    command=lambda: button_equal(str(ans)),
     relief="flat"
 )
 button_eq.place(
@@ -622,7 +648,7 @@ button_log = Button(window,
     image=button_image_34,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: button_click("log("),
+    command=lambda: button_logaritm("log("),
     relief="flat"
 )
 button_log.place(
