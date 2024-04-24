@@ -57,10 +57,22 @@ canvas.create_rectangle(
 
 custom_font = ("Inter", 22, "bold") 
 
+##
+# @brief Zaznamenanie inputu z klávesnice
+# @param event Stlačené tlačidlo
+def handle_key(event):
+    if event.char.isdigit() or event.char in "+-*/.!^(),epilogn":
+        button_click(event.char)
+    elif event.keysym == "Return":
+        button_answer()
+    elif event.keysym == "BackSpace":
+        button_delete()
+    return "break"
 
 e = tk.Entry(canvas, font=custom_font)
 e.place(x=15, y=116, width=466, height=126)
 e.focus_set()
+e.bind("<Key>", handle_key)
 
  
 ans = "" 

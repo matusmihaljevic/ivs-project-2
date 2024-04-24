@@ -28,7 +28,7 @@ pi = 3.141592653589795
 # @param expression Matematický výraz na spracovanie
 # @return Pole slov rozdelených podľa regexu
 def split_expression(expression: str) -> list:
-    words = re.findall(r'(?<!\d)\d*\.?\d+|\(|\)|//|log|ln|e|pi|[+*/-]|√|\S|!(?=\d)', expression) 
+    words = re.findall(r'(?<!\d)\d*\.?\d+|\(|\)|//|log|ln|e|pi|π|[+*/-]|√|\S|!(?=\d)', expression) 
     opening_bracket_count = 0
     closing_bracket_count = 0
     unary_operators_to_delete = []                
@@ -121,7 +121,7 @@ def parse(words: list) -> list:
             queue += parse(split_expression(nested_expression[1:-1]))    
         elif word == 'e':
             queue.append(e)   
-        elif word == 'pi':
+        elif word == 'pi' or word == "π":
             queue.append(pi)
         elif word == ',':
             continue
