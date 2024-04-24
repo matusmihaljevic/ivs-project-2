@@ -29,24 +29,56 @@ pi = 3.141592653589795
 # @return Pole slov rozdelených podľa regexu
 def split_expression(expression: str) -> list:
     words = re.findall(r'(?<!\d)\d*\.?\d+|\(|\)|//|log|ln|e|pi|[+*/-]|√|\S|!(?=\d)', expression) 
-    
+    opening_bracket_count = 0
+    closing_bracket_count = 0
     unary_operators_to_delete = []                
     for i in range(len(words)):
         if words[i] in ['-','+']:
+            if len(words) == 1:
+                return words
             if (i == 0) or (words[i-1] in precedence and words[i-1] != '!') or (words[i-1] == '(') or (words[i-1] == ','):
                 if words[i] == '-':
                     words[i] = 'u-'
                 else:
                     unary_operators_to_delete.append(i)  
-  
+        elif words[i] == ',':
+            in_log = False
+            for j in reversed(range(i)):  # Iteruj dozadu od i
+                if words[j] == "log" and words[j+1] == "(":
+                    in_log = True
+                    break
+            if in_log == False:
+                raise SyntaxError("Syntaktická chyba")
+            
+        elif words[i] == "(": opening_bracket_count+=1  
+        elif words[i] == ")": closing_bracket_count+=1
+        
+    if opening_bracket_count != closing_bracket_count:
+        raise SyntaxError("Syntaktická chyba")
+
+
     for i in range(len(words) - 1):
         if words[i] == 'u-' and words[i+1] == 'u-':
-            unary_operators_to_delete.extend([i, i+1])  
+            unary_operators_to_delete.extend([i, i+1])
+                    
+        if words[i] == "!":
+            if i == 0 or (words[i-1] == "(" and words[i+1] == ")") or words[i-1] == "(":
+                raise SyntaxError("Nedostatok operandov pre funkciu '!'")
+            
+        if words[i] == "(" and words[i+1] == ")" and (not words[i-1] in ["ln", "log"]):
+            raise SyntaxError("Syntaktická chyba")
+        
+    for i in range(len(words) - 2):
+        if (words[i] == "(") and (words[i+1] in precedence) and (words[i+2] == ")"):
+            if words[i+1] == "u-":
+                words[i+1] = "-"
+            raise SyntaxError("Nedostatok operandov pre operáciu \'{}\'".format(words[i+1]))    
+    
             
     for idx in sorted(unary_operators_to_delete, reverse=True):
         del words[idx]  
         
-    # Zisti, či sa za sebou nachádzajú 2 operátory a jeden z nich nie je unárny mínus   
+    # Zisti, či sa za sebou nachádzajú 2 operátory a jeden z nich nie je unárny mínus alebo  
     for i in range(len(words) - 1):
         if (words[i] in precedence) and (words[i] !="!") and (words[i+1] in precedence) and (words[i+1] not in ['u-', 'log', 'ln']):
             raise SyntaxError("Syntaktická chyba")
@@ -120,7 +152,7 @@ def evaluate(expression: str) -> float:
         words = split_expression(expression)
         parsed_words = parse(words)
         if(len(parsed_words) < 1):
-            raise SyntaxError("Nepovolený znak")
+            raise SyntaxError("Syntaktická chyba")
 
         evaluation_stack = []
 
@@ -130,7 +162,7 @@ def evaluate(expression: str) -> float:
                 
             elif parsed_word == 'u-':
                 if len(evaluation_stack) < 1:
-                    raise SyntaxError("Nedostatok operandov pre {}".format(parsed_word))
+                    raise SyntaxError("Nedostatok operandov pre operáciu \'-\'")
                 operand = evaluation_stack.pop()
                 evaluation_stack.append(-operand)
                 
@@ -164,7 +196,10 @@ def evaluate(expression: str) -> float:
                     evaluation_stack.append(pow(a, b))
                 elif parsed_word == '√':
                     evaluation_stack.append(root(b, a))
+                    
+        if len(evaluation_stack) > 1:
+            raise SyntaxError("Syntaktická chyba")            
                                          
         return float(evaluation_stack[0])
     except (ValueError, ZeroDivisionError, TypeError) as e:
-        return str(e)    
+        return str(e)

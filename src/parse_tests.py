@@ -172,11 +172,11 @@ def test_Evaluate_SYNTAX_FAILURE():
    
     with pytest.raises(SyntaxError) as err_info:
         parse.evaluate("")
-    assert str(err_info.value) == "Nepovolený znak"
+    assert str(err_info.value) == "Syntaktická chyba"
     
     with pytest.raises(SyntaxError) as err_info:
         parse.evaluate("()")
-    assert str(err_info.value) == "Nepovolený znak"
+    assert str(err_info.value) == "Syntaktická chyba"
 
     with pytest.raises(SyntaxError) as err_info:
         parse.evaluate("+")
@@ -184,13 +184,13 @@ def test_Evaluate_SYNTAX_FAILURE():
 
     with pytest.raises(SyntaxError) as err_info:
         parse.evaluate("(5())")
-    assert str(err_info.value) == "Nepovolený znak"
+    assert str(err_info.value) == "Syntaktická chyba"
     with pytest.raises(SyntaxError) as err_info:
         parse.evaluate("(5(-)2)")
     assert str(err_info.value) == "Nedostatok operandov pre operáciu '-'"
     with pytest.raises(SyntaxError) as err_info:
         parse.evaluate("(5-2))")
-    assert str(err_info.value) == "Nedostatok operandov pre operáciu '*'"
+    assert str(err_info.value) == "Syntaktická chyba"
 
     #Test-Neuzavrete zatvorky
     with pytest.raises(SyntaxError) as err_info:
@@ -297,19 +297,19 @@ def test_Evaluate_SYNTAX_FAILURE_Argument_Error_Logarithm():
 
     with pytest.raises(SyntaxError) as err_inf:
         parse.evaluate("log(1,2")
-    assert str(err_inf.value) == "Syntaktická chyba pre operáciu 'log'"
+    assert str(err_inf.value) == "Syntaktická chyba"
 
     with pytest.raises(SyntaxError) as err_inf:
         parse.evaluate("log(1,2))")
-    assert str(err_inf.value) == "Syntaktická chyba pre operáciu 'log'"
+    assert str(err_inf.value) == "Syntaktická chyba"
 
     with pytest.raises(SyntaxError) as err_inf:
         parse.evaluate("log(1(2,)5)")
-    assert str(err_inf.value) == "Syntaktická chyba pre operáciu 'log'"
+    assert str(err_inf.value) == "Syntaktická chyba"
     
     with pytest.raises(SyntaxError) as err_inf:
         parse.evaluate("log(log(5,3,3)")
-    assert str(err_inf.value) == "Syntaktická chyba pre operáciu 'log'"
+    assert str(err_inf.value) == "Syntaktická chyba"
 
 def test_Evaluate_SYNTAX_FAILURE_Argument_Error_Natural_Logarithm():
     with pytest.raises(SyntaxError) as err_inf:
@@ -318,13 +318,13 @@ def test_Evaluate_SYNTAX_FAILURE_Argument_Error_Natural_Logarithm():
 
     with pytest.raises(SyntaxError) as err_inf:
         parse.evaluate("ln(5")
-    assert str(err_inf.value) == "Syntaktická chyba pre operáciu 'ln'"
+    assert str(err_inf.value) == "Syntaktická chyba"
     
     with pytest.raises(SyntaxError) as err_inf:
         parse.evaluate("ln(5))")
-    assert str(err_inf.value) == "Syntaktická chyba pre operáciu 'ln'"
+    assert str(err_inf.value) == "Syntaktická chyba"
 
     with pytest.raises(SyntaxError) as err_inf:
         parse.evaluate("ln(5,2)")
-    assert str(err_inf.value) == "Syntaktická chyba pre operáciu 'ln'"
+    assert str(err_inf.value) == "Syntaktická chyba"
     
