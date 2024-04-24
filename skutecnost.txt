@@ -1,0 +1,9 @@
+Nepodarilo sa nám v neskoršej fázi projektu dodržiavať stanovené termíny. Časový plán nebol preto dodržaný.
+
+Makefile sme zle naplánovali na začiatku projektu, pričom sme ho vytvárali až pri konci.
+
+Rozdelenie zložitejších úloh nebolo implicitne dodržané, niektoré úlohy sme si rozdeľovali podľa časových možností členov.
+
+Nepočítali sme s tvorbou parseru, ktorý je dôležitou časťou projektu.
+
+Inštalátor nám zabral viac času ako sme predpokladali a spôsobil pomerne veľké problémy.
