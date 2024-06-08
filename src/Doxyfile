@@ -61,7 +61,7 @@ PROJECT_LOGO           = ""
 OUTPUT_DIRECTORY       = $(CURDIR)
 
 # If the CREATE_SUBDIRS tag is set to YES then doxygen will create 4096 sub-
-# directories (in 2 levels) under the output directory of each output format and
+# directories (in 2 levels) under the output directory of each output format and  
 # will distribute the generated files over these directories. Enabling this
 # option can be useful when feeding doxygen a huge amount of source files, where
 # putting all generated files in the same directory would otherwise causes
@@ -71,7 +71,7 @@ OUTPUT_DIRECTORY       = $(CURDIR)
 CREATE_SUBDIRS         = NO
 
 # If the ALLOW_UNICODE_NAMES tag is set to YES, doxygen will allow non-ASCII
-# characters to appear in the names of generated files. If set to NO, non-ASCII
+# characters to appear in the names of generated files. If set to NO, non-ASCII  
 # characters will be escaped, for example _xE3_x81_x84 will be used for Unicode
 # U+3044.
 # The default value is: NO.
